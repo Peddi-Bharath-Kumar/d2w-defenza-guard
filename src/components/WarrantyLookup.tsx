@@ -85,14 +85,16 @@ const WarrantyLookup = () => {
   return (
     <div className="w-full max-w-4xl mx-auto space-y-8">
       {/* Lookup Form */}
-      <Card className="shadow-lg border-brand-muted">
+      <Card className="shadow-lg border-brand-royal-blue/20">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center mb-4">
+          <div className="mx-auto w-12 h-12 bg-brand-royal-blue rounded-full flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(28,79,156,0.4)]">
             <Search className="h-6 w-6 text-white" />
           </div>
-          <CardTitle className="text-2xl text-brand-primary">Warranty Lookup</CardTitle>
+          <CardTitle className="text-2xl text-brand-primary">
+            <span className="text-brand-gold">D2W</span> Defenza Warranty Lookup
+          </CardTitle>
           <CardDescription className="text-lg">
-            Enter your D2W Defenza PPF warranty number to check coverage details
+            Enter your warranty number to check your PPF coverage details
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -106,14 +108,14 @@ const WarrantyLookup = () => {
                 placeholder="Enter warranty number (e.g., D2W123456)"
                 value={warrantyNumber}
                 onChange={(e) => setWarrantyNumber(e.target.value)}
-                className="text-lg h-12"
+                className="text-lg h-12 border-brand-royal-blue/30 focus:border-brand-royal-blue focus:ring-brand-royal-blue"
                 onKeyPress={(e) => e.key === 'Enter' && handleLookup()}
               />
             </div>
             <Button 
               onClick={handleLookup} 
               disabled={isLoading}
-              className="h-12 px-8 bg-brand-accent hover:bg-brand-accent/90"
+              className="h-12 px-8 bg-brand-royal-blue hover:bg-brand-royal-blue/90 shadow-[0_4px_14px_rgba(28,79,156,0.4)]"
             >
               {isLoading ? "Searching..." : "Search"}
             </Button>
@@ -128,13 +130,15 @@ const WarrantyLookup = () => {
 
       {/* Warranty Details */}
       {warrantyInfo && (
-        <Card className="shadow-xl border-brand-muted">
-          <CardHeader className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-t-lg">
+        <Card className="shadow-xl border-brand-royal-blue/30">
+          <CardHeader className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary text-white rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Shield className="h-8 w-8" />
+                <Shield className="h-8 w-8 text-brand-gold" />
                 <div>
-                  <CardTitle className="text-2xl">D2W Defenza PPF Warranty</CardTitle>
+                  <CardTitle className="text-2xl">
+                    <span className="text-brand-gold">D2W</span> Defenza PPF Warranty
+                  </CardTitle>
                   <CardDescription className="text-gray-200">
                     Digital Warranty Certificate
                   </CardDescription>
@@ -149,7 +153,7 @@ const WarrantyLookup = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div className="flex items-start gap-3">
-                  <User className="h-5 w-5 text-brand-accent mt-1" />
+                  <User className="h-5 w-5 text-brand-royal-blue mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-primary">Customer Information</h3>
                     <p className="text-lg">{warrantyInfo.customerName}</p>
@@ -158,7 +162,7 @@ const WarrantyLookup = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-brand-accent mt-1" />
+                  <MapPin className="h-5 w-5 text-brand-royal-blue mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-primary">Installation Details</h3>
                     <p className="text-lg">{warrantyInfo.installerName}</p>
@@ -169,7 +173,7 @@ const WarrantyLookup = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-5 w-5 text-brand-accent mt-1" />
+                  <Calendar className="h-5 w-5 text-brand-royal-blue mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-primary">Coverage Period</h3>
                     <p className="text-lg">{warrantyInfo.coverageType}</p>
@@ -181,19 +185,19 @@ const WarrantyLookup = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-brand-accent mt-1" />
+                  <Shield className="h-5 w-5 text-brand-gold mt-1" />
                   <div>
                     <h3 className="font-semibold text-brand-primary">Warranty Number</h3>
-                    <p className="text-lg font-mono">{warrantyInfo.warrantyNumber}</p>
+                    <p className="text-lg font-mono text-brand-royal-blue">{warrantyInfo.warrantyNumber}</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 p-4 bg-brand-muted/30 rounded-lg">
+            <div className="mt-8 p-4 bg-gradient-to-r from-brand-royal-blue/10 to-brand-gold/10 rounded-lg border border-brand-royal-blue/20">
               <p className="text-sm text-brand-primary">
-                <strong>Note:</strong> This digital warranty certificate is valid for all warranty claims. 
-                Please contact your installer or D2W Defenza authorized dealer for any warranty services.
+                <strong className="text-brand-royal-blue">Note:</strong> This digital warranty certificate is valid for all warranty claims. 
+                Please contact your installer or <span className="text-brand-gold font-semibold">D2W</span> Defenza authorized dealer for any warranty services.
               </p>
             </div>
           </CardContent>

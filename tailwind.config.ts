@@ -49,7 +49,8 @@ export default {
         },
         brand: {
           primary: "hsl(var(--brand-primary))",
-          accent: "hsl(var(--brand-accent))",
+          "royal-blue": "hsl(var(--brand-royal-blue))",
+          gold: "hsl(var(--brand-gold))",
           secondary: "hsl(var(--brand-secondary))",
           muted: "hsl(var(--brand-muted))",
         },
