@@ -2,51 +2,72 @@ import { Shield, Award, Users, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import WarrantyLookup from "@/components/WarrantyLookup";
-import heroImage from "@/assets/ppf-hero.jpg";
+import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-brand-muted">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary border-b-4 border-brand-gold shadow-lg">
+        <div className="container mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center">
-                <Shield className="h-6 w-6 text-white" />
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(255,193,7,0.5)]">
+                <Shield className="h-7 w-7 text-brand-primary" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-brand-primary">D2W Defenza PPF</h1>
-                <p className="text-sm text-muted-foreground">Digital Warranty System</p>
+                <h1 className="text-3xl font-bold text-white">
+                  <span className="text-brand-gold">D2W</span>defenza
+                </h1>
+                <p className="text-sm text-blue-200 font-medium">PAINT PROTECTION FILM</p>
               </div>
+            </div>
+            <div className="hidden md:block">
+              <p className="text-white text-sm font-semibold">Digital Warranty System</p>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary">
-        <div className="absolute inset-0 bg-black/20"></div>
+      {/* Hero Banner with Box Image */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-royal-blue via-brand-primary to-black">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(28,79,156,0.3),transparent_50%)]"></div>
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${boxImage})` }}
         ></div>
-        <div className="relative container mx-auto px-4 py-20">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Premium Paint Protection
-              <span className="block text-brand-accent">Film Warranty</span>
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 opacity-90">
-              Check your D2W Defenza PPF warranty status instantly with our digital warranty system
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-brand-accent hover:bg-brand-accent/90 text-white px-8 py-4 text-lg"
-              onClick={() => document.getElementById('warranty-lookup')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Check Your Warranty
-            </Button>
+        <div className="relative container mx-auto px-4 py-24 md:py-32">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="text-white z-10">
+              <div className="inline-block bg-brand-gold/20 backdrop-blur-sm border border-brand-gold/40 px-4 py-2 rounded-full mb-6">
+                <span className="text-brand-gold font-semibold">Premium Quality Guaranteed</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                <span className="text-brand-gold">D2W</span> Defenza
+                <span className="block text-white mt-2">Paint Protection Film</span>
+              </h2>
+              <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+                Check your warranty status instantly with our digital warranty system
+              </p>
+              <Button 
+                size="lg" 
+                className="bg-brand-gold hover:bg-brand-gold/90 text-brand-primary px-8 py-6 text-lg font-bold shadow-[0_0_30px_rgba(255,193,7,0.4)] hover:shadow-[0_0_40px_rgba(255,193,7,0.6)] transition-all"
+                onClick={() => document.getElementById('warranty-lookup')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Check Your Warranty
+              </Button>
+            </div>
+            <div className="relative hidden md:block">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(28,79,156,0.5)] border-4 border-brand-gold/30">
+                <img 
+                  src={boxImage} 
+                  alt="D2W Defenza PPF Box" 
+                  className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl"></div>
+              <div className="absolute -top-4 -left-4 w-72 h-72 bg-brand-royal-blue/30 rounded-full blur-3xl"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -56,7 +77,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Why Choose D2W Defenza PPF?
+              Why Choose <span className="text-brand-gold">D2W</span> Defenza PPF?
             </h3>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Premium protection with comprehensive digital warranty coverage
@@ -64,10 +85,10 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="border-brand-muted shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Shield className="h-8 w-8 text-brand-accent" />
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Shield className="h-8 w-8 text-brand-royal-blue" />
                 </div>
                 <h4 className="text-xl font-semibold text-brand-primary mb-4">Premium Protection</h4>
                 <p className="text-muted-foreground">
@@ -76,10 +97,10 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-brand-muted shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-brand-gold/50 shadow-xl hover:shadow-2xl transition-all bg-gradient-to-br from-white to-brand-gold/5">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Award className="h-8 w-8 text-brand-accent" />
+                <div className="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,193,7,0.3)]">
+                  <Award className="h-8 w-8 text-brand-gold" />
                 </div>
                 <h4 className="text-xl font-semibold text-brand-primary mb-4">5-Year Warranty</h4>
                 <p className="text-muted-foreground">
@@ -88,10 +109,10 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-brand-muted shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-8 w-8 text-brand-accent" />
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Users className="h-8 w-8 text-brand-royal-blue" />
                 </div>
                 <h4 className="text-xl font-semibold text-brand-primary mb-4">Authorized Network</h4>
                 <p className="text-muted-foreground">
@@ -155,7 +176,7 @@ const Index = () => {
               }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-brand-accent rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+                <div className="w-16 h-16 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-[0_0_20px_rgba(28,79,156,0.4)]">
                   {item.step}
                 </div>
                 <h4 className="text-lg font-semibold text-brand-primary mb-2">{item.title}</h4>
@@ -167,17 +188,19 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-brand-primary text-white py-12">
+      <footer className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary text-white py-12 border-t-4 border-brand-gold">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center">
-                  <Shield className="h-5 w-5 text-white" />
+                <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,193,7,0.4)]">
+                  <Shield className="h-5 w-5 text-brand-primary" />
                 </div>
-                <span className="text-xl font-bold">D2W Defenza PPF</span>
+                <span className="text-xl font-bold">
+                  <span className="text-brand-gold">D2W</span> Defenza PPF
+                </span>
               </div>
-              <p className="text-gray-300">
+              <p className="text-blue-200">
                 Premium paint protection film with comprehensive digital warranty coverage.
               </p>
             </div>
