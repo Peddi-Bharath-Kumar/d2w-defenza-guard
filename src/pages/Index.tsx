@@ -46,7 +46,10 @@ const Index = () => {
                 <span className="text-brand-gold">D2W</span> Defenza
                 <span className="block text-white mt-2">Paint Protection Film</span>
               </h2>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+              <p className="text-xl md:text-2xl mb-4 text-blue-100 leading-relaxed">
+                Top Premium TPU Protection • 215 & 190 Microns • 10-Year Warranty
+              </p>
+              <p className="text-lg mb-8 text-blue-200">
                 Check your warranty status instantly with our digital warranty system
               </p>
               <Button 
@@ -90,9 +93,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Shield className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-4">Premium Protection</h4>
+                <h4 className="text-xl font-semibold text-brand-primary mb-4">Premium TPU Protection</h4>
                 <p className="text-muted-foreground">
-                  Advanced PPF technology providing superior protection against scratches, chips, and environmental damage.
+                  Top-grade thermoplastic polyurethane in 215 & 190 micron options providing superior protection.
                 </p>
               </CardContent>
             </Card>
@@ -102,9 +105,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,193,7,0.3)]">
                   <Award className="h-8 w-8 text-brand-gold" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-4">5-Year Warranty</h4>
+                <h4 className="text-xl font-semibold text-brand-primary mb-4">10-Year Warranty</h4>
                 <p className="text-muted-foreground">
-                  Comprehensive warranty coverage with easy digital verification and claim process.
+                  Industry-leading 10-year coverage for both 215 and 190 micron variants with easy digital verification.
                 </p>
               </CardContent>
             </Card>
