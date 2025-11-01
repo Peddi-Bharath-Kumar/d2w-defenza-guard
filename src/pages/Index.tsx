@@ -46,11 +46,8 @@ const Index = () => {
                 <span className="text-brand-gold">D2W</span> Defenza
                 <span className="block text-white mt-2">Paint Protection Film</span>
               </h2>
-              <p className="text-xl md:text-2xl mb-4 text-blue-100 leading-relaxed">
-                Top Premium TPU Protection • 215 & 190 Microns • 10-Year Warranty
-              </p>
-              <p className="text-lg mb-8 text-blue-200">
-                Check your warranty status instantly with our digital warranty system
+              <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+                Top Premium Protection with 10-Year Warranty
               </p>
               <Button 
                 size="lg" 
@@ -121,6 +118,84 @@ const Index = () => {
                 <p className="text-muted-foreground">
                   Installed by certified professionals through our nationwide network of authorized dealers.
                 </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Variants Section */}
+      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              D2W Defenza <span className="text-brand-gold">Variants</span>
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Choose the perfect protection for your vehicle
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Transparent 215 Microns */}
+            <Card className="border-brand-gold/50 shadow-xl hover:shadow-2xl transition-all bg-gradient-to-br from-white to-brand-gold/5 hover:scale-105 transform duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(28,79,156,0.4)]">
+                    <Shield className="h-10 w-10 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-brand-primary mb-2">Transparent</h4>
+                  <p className="text-brand-gold font-semibold text-lg">215 Microns</p>
+                </div>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
+                    <span>Premium TPU material</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
+                    <span>Maximum protection thickness</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
+                    <span>10-year warranty coverage</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
+                    <span>Crystal clear finish</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Transparent 190 Microns */}
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:scale-105 transform duration-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(28,79,156,0.3)]">
+                    <Shield className="h-10 w-10 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-brand-primary mb-2">Transparent</h4>
+                  <p className="text-brand-royal-blue font-semibold text-lg">190 Microns</p>
+                </div>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-royal-blue mt-0.5 flex-shrink-0" />
+                    <span>Premium TPU material</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-royal-blue mt-0.5 flex-shrink-0" />
+                    <span>Optimal protection balance</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-royal-blue mt-0.5 flex-shrink-0" />
+                    <span>10-year warranty coverage</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Zap className="h-5 w-5 text-brand-royal-blue mt-0.5 flex-shrink-0" />
+                    <span>Crystal clear finish</span>
+                  </li>
+                </ul>
               </CardContent>
             </Card>
           </div>
