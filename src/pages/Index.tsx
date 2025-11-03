@@ -1,7 +1,8 @@
-import { Shield, Award, Users, Zap } from "lucide-react";
+import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import WarrantyLookup from "@/components/WarrantyLookup";
+import ContactForm from "@/components/ContactForm";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
@@ -170,6 +171,94 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Protection Features Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              Complete <span className="text-brand-gold">Protection</span> Features
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Advanced technology protecting your vehicle in every way
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Shield className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">Stone Chip Protection</h4>
+                <p className="text-muted-foreground">
+                  Shields against stone chips, minor scratches, and road debris.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Sun className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">UV & Oxidation Resistance</h4>
+                <p className="text-muted-foreground">
+                  Blocks harmful UV rays, preventing paint fading and oxidation over time. Maintains the vehicle's original color and gloss for years.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Sparkles className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">Self-Healing Properties</h4>
+                <p className="text-muted-foreground">
+                  Minor scratches and swirl marks disappear with heat, keeping your paint looking pristine.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Droplets className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">Easy Cleaning & Maintenance</h4>
+                <p className="text-muted-foreground">
+                  Hydrophobic surface repels water and dirt, making washing effortless.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <FlaskConical className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">Chemical & Stain Resistance</h4>
+                <p className="text-muted-foreground">
+                  Protects against bird droppings, tree sap, acid rain, and harsh chemicals.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
+                  <Eye className="h-8 w-8 text-brand-royal-blue" />
+                </div>
+                <h4 className="text-xl font-semibold text-brand-primary mb-3">Invisible Protection</h4>
+                <p className="text-muted-foreground">
+                  Crystal clear finish maintains your vehicle's original appearance while providing maximum protection.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Warranty Lookup Section */}
       <section id="warranty-lookup" className="py-20 bg-brand-muted/20">
         <div className="container mx-auto px-4">
@@ -230,6 +319,22 @@ const Index = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Contact Us Section */}
+      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              Contact <span className="text-brand-gold">Us</span>
+            </h3>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Get in touch with us for inquiries, quotes, or to become a dealer
+            </p>
+          </div>
+          
+          <ContactForm />
         </div>
       </section>
 
