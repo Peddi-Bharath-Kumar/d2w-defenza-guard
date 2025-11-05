@@ -1,6 +1,7 @@
 import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import WarrantyLookup from "@/components/WarrantyLookup";
 import ContactForm from "@/components/ContactForm";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
@@ -366,10 +367,13 @@ const Index = () => {
             
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
-              <div className="space-y-2 text-gray-300">
-                <p>Warranty Claims</p>
-                <p>Technical Support</p>
-                <p>Dealer Network</p>
+              <div className="space-y-2">
+                <Link to="/warranty-claims" className="block text-gray-300 hover:text-brand-gold transition-colors">
+                  Warranty Claims
+                </Link>
+                <Link to="/terms-conditions" className="block text-gray-300 hover:text-brand-gold transition-colors">
+                  Terms & Conditions
+                </Link>
               </div>
             </div>
           </div>
