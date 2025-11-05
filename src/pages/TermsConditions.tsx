@@ -216,6 +216,9 @@ const TermsConditions = () => {
                 <Link to="/terms-conditions" className="block text-gray-300 hover:text-brand-gold transition-colors">
                   Terms & Conditions
                 </Link>
+                <Link to="/blog" className="block text-gray-300 hover:text-brand-gold transition-colors">
+                  Blog
+                </Link>
               </div>
             </div>
           </div>
