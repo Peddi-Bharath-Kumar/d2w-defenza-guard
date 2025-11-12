@@ -63,6 +63,14 @@ const WarrantyLookup = () => {
       if (warranty) {
         setWarrantyInfo(warranty);
         setError("");
+        
+        // Track warranty lookup with Meta Pixel
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('trackCustom', 'WarrantyLookup', {
+            warranty_number: warrantyNumber,
+            status: warranty.status
+          });
+        }
       } else {
         setWarrantyInfo(null);
         setError("Warranty number not found. Please check your warranty card and try again.");

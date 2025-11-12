@@ -18,7 +18,17 @@ const BlogPost = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    
+    // Track blog post view with Meta Pixel
+    if (post && typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'ViewContent', {
+        content_name: post.title,
+        content_category: post.category,
+        content_type: 'blog_post',
+        content_ids: [post.id]
+      });
+    }
+  }, [id, post]);
 
   if (!post) {
     return (

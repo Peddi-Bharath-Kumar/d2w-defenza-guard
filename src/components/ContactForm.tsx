@@ -48,6 +48,14 @@ const ContactForm = () => {
       // Simulate form submission
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
+      // Track lead event with Meta Pixel
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead', {
+          content_category: data.userType,
+          content_name: 'Contact Form Submission'
+        });
+      }
+      
       toast({
         title: "Inquiry Submitted!",
         description: "We'll get back to you soon.",
