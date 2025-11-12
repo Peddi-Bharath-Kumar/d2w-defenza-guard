@@ -10,7 +10,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary border-b-4 border-brand-gold shadow-lg">
+      <header className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary border-b-4 border-brand-gold shadow-lg" role="banner">
         <div className="container mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -32,7 +32,8 @@ const Index = () => {
       </header>
 
       {/* Hero Banner with Box Image */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-royal-blue via-brand-primary to-black">
+      <main>
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-royal-blue via-brand-primary to-black" aria-label="Hero banner">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(28,79,156,0.3),transparent_50%)]"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -46,7 +47,7 @@ const Index = () => {
               </div>
               <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 <span className="text-brand-gold">D2W</span> Defenza
-                <span className="block text-white mt-2">Paint Protection Film</span>
+                <span className="block text-white mt-2">Paint Protection Film (PPF)</span>
               </h2>
               <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
                 Top Premium Protection with 10-Year Warranty
@@ -63,8 +64,9 @@ const Index = () => {
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(28,79,156,0.5)] border-4 border-brand-gold/30">
                 <img 
                   src={boxImage} 
-                  alt="D2W Defenza PPF Box" 
+                  alt="D2W Defenza Paint Protection Film Product Box - Premium TPU PPF with 10 Year Warranty" 
                   className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
+                  loading="eager"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl"></div>
@@ -75,12 +77,12 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background" aria-labelledby="features-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+            <h2 id="features-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
               Why Choose <span className="text-brand-gold">D2W</span> Defenza PPF?
-            </h3>
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Premium protection with comprehensive digital warranty coverage
             </p>
@@ -92,9 +94,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Shield className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-4">Premium TPU Protection</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-4">Premium TPU Protection</h3>
                 <p className="text-muted-foreground">
-                  Top-grade thermoplastic polyurethane in 215 & 190 micron options providing superior protection.
+                  Top-grade thermoplastic polyurethane in 215 & 190 micron options providing superior car paint protection.
                 </p>
               </CardContent>
             </Card>
@@ -104,9 +106,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,193,7,0.3)]">
                   <Award className="h-8 w-8 text-brand-gold" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-4">10-Year Warranty</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-4">10-Year Warranty</h3>
                 <p className="text-muted-foreground">
-                  Industry-leading 10-year coverage for both 215 and 190 micron variants with easy digital verification.
+                  Industry-leading 10-year warranty coverage for both 215 and 190 micron variants with easy digital verification.
                 </p>
               </CardContent>
             </Card>
@@ -116,9 +118,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Users className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-4">Authorized Network</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-4">Authorized Dealer Network</h3>
                 <p className="text-muted-foreground">
-                  Installed by certified professionals through our nationwide network of authorized dealers.
+                  Professional PPF installation by certified technicians through our nationwide network of authorized dealers across India.
                 </p>
               </CardContent>
             </Card>
@@ -127,14 +129,14 @@ const Index = () => {
       </section>
 
       {/* Variants Section */}
-      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5">
+      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5" aria-labelledby="variants-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              <span className="text-brand-gold">D2W</span> Defenza
-            </h3>
+            <h2 id="variants-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              <span className="text-brand-gold">D2W</span> Defenza PPF Variants
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Choose the perfect protection for your vehicle
+              Choose the perfect paint protection for your vehicle
             </p>
           </div>
           
@@ -145,7 +147,7 @@ const Index = () => {
                   <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(28,79,156,0.4)]">
                     <Shield className="h-10 w-10 text-white" />
                   </div>
-                  <h4 className="text-2xl font-bold text-brand-primary mb-2">Transparent TPU</h4>
+                  <h3 className="text-2xl font-bold text-brand-primary mb-2">Transparent TPU PPF</h3>
                   <p className="text-brand-gold font-semibold text-lg">190 / 215 Microns</p>
                 </div>
                 <ul className="space-y-3 text-muted-foreground">
@@ -173,12 +175,12 @@ const Index = () => {
       </section>
 
       {/* Protection Features Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background" aria-labelledby="protection-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Complete <span className="text-brand-gold">Protection</span> Features
-            </h3>
+            <h2 id="protection-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              Complete PPF <span className="text-brand-gold">Protection</span> Features
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Advanced technology protecting your vehicle in every way
             </p>
@@ -190,7 +192,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Shield className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">Stone Chip Protection</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">Stone Chip Protection</h3>
                 <p className="text-muted-foreground">
                   Shields against stone chips, minor scratches, and road debris.
                 </p>
@@ -202,7 +204,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Sun className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">UV & Oxidation Resistance</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">UV & Oxidation Resistance</h3>
                 <p className="text-muted-foreground">
                   Blocks harmful UV rays, preventing paint fading and oxidation over time. Maintains the vehicle's original color and gloss for years.
                 </p>
@@ -214,7 +216,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Sparkles className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">Self-Healing Properties</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">Self-Healing Properties</h3>
                 <p className="text-muted-foreground">
                   Minor scratches and swirl marks disappear with heat, keeping your paint looking pristine.
                 </p>
@@ -226,7 +228,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Droplets className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">Easy Cleaning & Maintenance</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">Easy Cleaning & Maintenance</h3>
                 <p className="text-muted-foreground">
                   Hydrophobic surface repels water and dirt, making washing effortless.
                 </p>
@@ -238,7 +240,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <FlaskConical className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">Chemical & Stain Resistance</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">Chemical & Stain Resistance</h3>
                 <p className="text-muted-foreground">
                   Protects against bird droppings, tree sap, acid rain, and harsh chemicals.
                 </p>
@@ -250,7 +252,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
                   <Eye className="h-8 w-8 text-brand-royal-blue" />
                 </div>
-                <h4 className="text-xl font-semibold text-brand-primary mb-3">Invisible Protection</h4>
+                <h3 className="text-xl font-semibold text-brand-primary mb-3">Invisible Protection</h3>
                 <p className="text-muted-foreground">
                   Crystal clear finish maintains your vehicle's original appearance while providing maximum protection.
                 </p>
@@ -261,12 +263,12 @@ const Index = () => {
       </section>
 
       {/* Warranty Lookup Section */}
-      <section id="warranty-lookup" className="py-20 bg-brand-muted/20">
+      <section id="warranty-lookup" className="py-20 bg-brand-muted/20" aria-labelledby="warranty-lookup-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Check Your Warranty
-            </h3>
+            <h2 id="warranty-lookup-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              Check Your PPF Warranty
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Enter your warranty number to instantly access your digital warranty certificate
             </p>
@@ -277,12 +279,12 @@ const Index = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-background" aria-labelledby="how-it-works-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              How Our Warranty Works
-            </h3>
+            <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+              How Our PPF Warranty Works
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Simple, digital, and secure warranty verification process
             </p>
@@ -315,7 +317,7 @@ const Index = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-[0_0_20px_rgba(28,79,156,0.4)]">
                   {item.step}
                 </div>
-                <h4 className="text-lg font-semibold text-brand-primary mb-2">{item.title}</h4>
+                <h3 className="text-lg font-semibold text-brand-primary mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm">{item.description}</p>
               </div>
             ))}
@@ -324,12 +326,12 @@ const Index = () => {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5">
+      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5" aria-labelledby="contact-heading">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
+            <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
               Contact <span className="text-brand-gold">Us</span>
-            </h3>
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Get in touch with us for inquiries, quotes, or to become a dealer
             </p>
@@ -338,9 +340,10 @@ const Index = () => {
           <ContactForm />
         </div>
       </section>
+      </main>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary text-white py-12 border-t-4 border-brand-gold">
+      <footer className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary text-white py-12 border-t-4 border-brand-gold" role="contentinfo">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
