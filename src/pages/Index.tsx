@@ -1,390 +1,363 @@
-import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye } from "lucide-react";
+import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import WarrantyLookup from "@/components/WarrantyLookup";
 import ContactForm from "@/components/ContactForm";
+import FloatingButtons from "@/components/FloatingButtons";
+import StatsCounter from "@/components/StatsCounter";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import TrustBadges from "@/components/TrustBadges";
+import StickyNavigation from "@/components/StickyNavigation";
+import ParticleBackground from "@/components/ParticleBackground";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary border-b-4 border-brand-gold shadow-lg" role="banner">
-        <div className="container mx-auto px-4 py-5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(255,193,7,0.5)]">
-                <Shield className="h-7 w-7 text-brand-primary" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">
-                  <span className="text-brand-gold">D2W</span>defenza
-                </h1>
-                <p className="text-sm text-blue-200 font-medium">PAINT PROTECTION FILM</p>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <p className="text-white text-sm font-semibold">Digital Warranty System</p>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Sticky Navigation */}
+      <StickyNavigation />
 
-      {/* Hero Banner with Box Image */}
+      {/* Floating Contact Buttons */}
+      <FloatingButtons />
+
+      {/* Hero Banner with Particles */}
       <main>
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-royal-blue via-brand-primary to-black" aria-label="Hero banner">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(28,79,156,0.3),transparent_50%)]"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${boxImage})` }}
-        ></div>
-        <div className="relative container mx-auto px-4 py-24 md:py-32">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white z-10">
-              <div className="inline-block bg-brand-gold/20 backdrop-blur-sm border border-brand-gold/40 px-4 py-2 rounded-full mb-6">
-                <span className="text-brand-gold font-semibold">Premium Quality Guaranteed</span>
-              </div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-brand-gold">D2W</span> Defenza
-                <span className="block text-white mt-2">Paint Protection Film (PPF)</span>
-              </h2>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
-                Top Premium Protection with 10-Year Warranty
-              </p>
-              <Button 
-                size="lg" 
-                className="bg-brand-gold hover:bg-brand-gold/90 text-brand-primary px-8 py-6 text-lg font-bold shadow-[0_0_30px_rgba(255,193,7,0.4)] hover:shadow-[0_0_40px_rgba(255,193,7,0.6)] transition-all"
-                onClick={() => document.getElementById('warranty-lookup')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Check Your Warranty
-              </Button>
-            </div>
-            <div className="relative hidden md:block">
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(28,79,156,0.5)] border-4 border-brand-gold/30">
-                <img 
-                  src={boxImage} 
-                  alt="D2W Defenza Paint Protection Film Product Box - Premium TPU PPF with 10 Year Warranty" 
-                  className="w-full h-auto transform hover:scale-105 transition-transform duration-500"
-                  loading="eager"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl"></div>
-              <div className="absolute -top-4 -left-4 w-72 h-72 bg-brand-royal-blue/30 rounded-full blur-3xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-background" aria-labelledby="features-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="features-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Why Choose <span className="text-brand-gold">D2W</span> Defenza PPF?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Premium protection with comprehensive digital warranty coverage
-            </p>
-          </div>
+        <section className="relative min-h-screen flex items-center overflow-hidden hero-gradient pt-20" aria-label="Hero banner">
+          {/* Particle Background */}
+          <ParticleBackground />
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Shield className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-4">Premium TPU Protection</h3>
-                <p className="text-muted-foreground">
-                  Top-grade thermoplastic polyurethane in 215 & 190 micron options providing superior car paint protection.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-brand-gold/50 shadow-xl hover:shadow-2xl transition-all bg-gradient-to-br from-white to-brand-gold/5">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(255,193,7,0.3)]">
-                  <Award className="h-8 w-8 text-brand-gold" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-4">10-Year Warranty</h3>
-                <p className="text-muted-foreground">
-                  Industry-leading 10-year warranty coverage for both 215 and 190 micron variants with easy digital verification.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Users className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-4">Authorized Dealer Network</h3>
-                <p className="text-muted-foreground">
-                  Professional PPF installation by certified technicians through our nationwide network of authorized dealers across India.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Variants Section */}
-      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5" aria-labelledby="variants-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="variants-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              <span className="text-brand-gold">D2W</span> Defenza PPF Variants
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Choose the perfect paint protection for your vehicle
-            </p>
-          </div>
+          {/* Gradient Overlays */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(28,79,156,0.4),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,193,7,0.15),transparent_40%)]"></div>
           
-          <div className="max-w-2xl mx-auto">
-            <Card className="border-brand-gold/50 shadow-xl hover:shadow-2xl transition-all bg-gradient-to-br from-white to-brand-gold/5">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(28,79,156,0.4)]">
-                    <Shield className="h-10 w-10 text-white" />
+          <div className="relative container mx-auto px-4 py-12 md:py-24">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-white z-10">
+                <div className="inline-flex items-center gap-2 bg-brand-gold/20 backdrop-blur-sm border border-brand-gold/40 px-5 py-2.5 rounded-full mb-8 animate-fade-in-down">
+                  <Sparkles className="h-4 w-4 text-brand-gold animate-bounce-subtle" />
+                  <span className="text-brand-gold font-semibold text-sm">Premium Quality Guaranteed</span>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight font-outfit">
+                  <span className="text-gradient-gold">D2W</span> Defenza
+                  <span className="block text-white mt-3 text-4xl md:text-5xl">Paint Protection Film</span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl mb-10 text-blue-100 leading-relaxed max-w-xl opacity-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                  India's most trusted PPF brand. Self-healing technology with 10-year warranty protection.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+                  <Button 
+                    size="lg" 
+                    className="bg-brand-gold hover:bg-brand-gold/90 text-brand-primary px-8 py-7 text-lg font-bold shadow-[0_0_30px_rgba(255,193,7,0.4)] hover:shadow-[0_0_50px_rgba(255,193,7,0.6)] transition-all btn-shine group"
+                    onClick={() => document.getElementById('warranty-lookup')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Check Your Warranty
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-brand-gold px-8 py-7 text-lg font-semibold transition-all"
+                    onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
+                    Explore Features
+                  </Button>
+                </div>
+              </div>
+              
+              {/* Right - Product Image */}
+              <div className="relative hidden md:flex justify-center items-center">
+                <div className="absolute w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="relative z-10 group">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-brand-gold/30 to-brand-royal-blue/30 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-70 group-hover:opacity-100"></div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-brand-gold/40 group-hover:border-brand-gold/60 transition-all duration-500 group-hover:scale-[1.02]">
+                    <img 
+                      src={boxImage} 
+                      alt="D2W Defenza Paint Protection Film Product Box - Premium TPU PPF with 10 Year Warranty" 
+                      className="w-full h-auto max-w-md transform transition-transform duration-700 group-hover:scale-105"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
-                  <h3 className="text-2xl font-bold text-brand-primary mb-2">Transparent TPU PPF</h3>
-                  <p className="text-brand-gold font-semibold text-lg">190 / 215 Microns</p>
                 </div>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-                    <span>Premium TPU material</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-                    <span>Available in 190 and 215 micron thickness</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-                    <span>10-year warranty coverage</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Zap className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-                    <span>Crystal clear finish</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Protection Features Section */}
-      <section className="py-20 bg-background" aria-labelledby="protection-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="protection-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Complete PPF <span className="text-brand-gold">Protection</span> Features
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Advanced technology protecting your vehicle in every way
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Shield className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">Stone Chip Protection</h3>
-                <p className="text-muted-foreground">
-                  Shields against stone chips, minor scratches, and road debris.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Sun className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">UV & Oxidation Resistance</h3>
-                <p className="text-muted-foreground">
-                  Blocks harmful UV rays, preventing paint fading and oxidation over time. Maintains the vehicle's original color and gloss for years.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Sparkles className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">Self-Healing Properties</h3>
-                <p className="text-muted-foreground">
-                  Minor scratches and swirl marks disappear with heat, keeping your paint looking pristine.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Droplets className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">Easy Cleaning & Maintenance</h3>
-                <p className="text-muted-foreground">
-                  Hydrophobic surface repels water and dirt, making washing effortless.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <FlaskConical className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">Chemical & Stain Resistance</h3>
-                <p className="text-muted-foreground">
-                  Protects against bird droppings, tree sap, acid rain, and harsh chemicals.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-brand-royal-blue/30 shadow-lg hover:shadow-xl transition-all hover:border-brand-gold/50">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-brand-royal-blue/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(28,79,156,0.2)]">
-                  <Eye className="h-8 w-8 text-brand-royal-blue" />
-                </div>
-                <h3 className="text-xl font-semibold text-brand-primary mb-3">Invisible Protection</h3>
-                <p className="text-muted-foreground">
-                  Crystal clear finish maintains your vehicle's original appearance while providing maximum protection.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Warranty Lookup Section */}
-      <section id="warranty-lookup" className="py-20 bg-brand-muted/20" aria-labelledby="warranty-lookup-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="warranty-lookup-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Check Your PPF Warranty
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Enter your warranty number to instantly access your digital warranty certificate
-            </p>
-          </div>
-          
-          <WarrantyLookup />
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-background" aria-labelledby="how-it-works-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="how-it-works-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              How Our PPF Warranty Works
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Simple, digital, and secure warranty verification process
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                step: "1",
-                title: "PPF Installation",
-                description: "Get D2W Defenza PPF installed by authorized dealers"
-              },
-              {
-                step: "2", 
-                title: "Warranty Registration",
-                description: "Your warranty is automatically registered in our system"
-              },
-              {
-                step: "3",
-                title: "Digital Certificate",
-                description: "Receive your unique warranty number and digital certificate"
-              },
-              {
-                step: "4",
-                title: "Easy Verification",
-                description: "Check warranty status anytime through our website"
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-[0_0_20px_rgba(28,79,156,0.4)]">
-                  {item.step}
-                </div>
-                <h3 className="text-lg font-semibold text-brand-primary mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm">{item.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Us Section */}
-      <section className="py-20 bg-gradient-to-br from-brand-royal-blue/5 to-brand-gold/5" aria-labelledby="contact-heading">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-brand-primary mb-4">
-              Contact <span className="text-brand-gold">Us</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Get in touch with us for inquiries, quotes, or to become a dealer
-            </p>
+            </div>
           </div>
           
-          <ContactForm />
-        </div>
-      </section>
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+              <div className="w-1.5 h-3 bg-brand-gold rounded-full animate-bounce"></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust Badges */}
+        <TrustBadges />
+
+        {/* Stats Counter */}
+        <StatsCounter />
+
+        {/* Features Section */}
+        <section id="features" className="py-24 bg-background" aria-labelledby="features-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Why Choose Us</span>
+              <h2 id="features-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                Why Choose <span className="text-gradient-gold">D2W</span> Defenza PPF?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Premium protection with comprehensive digital warranty coverage
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto stagger-children">
+              <Card className="card-premium group">
+                <CardContent className="p-8 text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue/20 to-brand-gold/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="h-10 w-10 text-brand-royal-blue group-hover:text-brand-gold transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-primary mb-4 font-outfit">Premium TPU Protection</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Top-grade thermoplastic polyurethane in 215 & 190 micron options providing superior car paint protection.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="card-premium group border-brand-gold/30 bg-gradient-to-br from-white to-brand-gold/5">
+                <CardContent className="p-8 text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-gold/30 to-brand-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <Award className="h-10 w-10 text-brand-gold" />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-primary mb-4 font-outfit">10-Year Warranty</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Industry-leading 10-year warranty coverage for both 215 and 190 micron variants with easy digital verification.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="card-premium group">
+                <CardContent className="p-8 text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue/20 to-brand-gold/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-10 w-10 text-brand-royal-blue group-hover:text-brand-gold transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-primary mb-4 font-outfit">Authorized Dealer Network</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Professional PPF installation by certified technicians through our nationwide network of authorized dealers.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Variants Section */}
+        <section id="variants" className="py-24 bg-gradient-to-br from-brand-muted/30 via-white to-brand-gold/5" aria-labelledby="variants-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Product Range</span>
+              <h2 id="variants-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                <span className="text-gradient-gold">D2W</span> Defenza PPF Variants
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Choose the perfect paint protection for your vehicle
+              </p>
+            </div>
+            
+            <div className="max-w-2xl mx-auto">
+              <Card className="card-premium overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-gold/20 to-transparent rounded-bl-full"></div>
+                <CardContent className="p-10 relative">
+                  <div className="text-center mb-8">
+                    <div className="w-24 h-24 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl animate-float">
+                      <Shield className="h-12 w-12 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-brand-primary mb-3 font-outfit">Transparent TPU PPF</h3>
+                    <p className="text-brand-gold font-bold text-xl">190 / 215 Microns</p>
+                  </div>
+                  <ul className="space-y-4 text-muted-foreground">
+                    {[
+                      "Premium TPU material",
+                      "Available in 190 and 215 micron thickness",
+                      "10-year warranty coverage",
+                      "Crystal clear finish",
+                      "Self-healing technology",
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-start gap-3 group">
+                        <div className="w-6 h-6 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/40 transition-colors">
+                          <Zap className="h-3.5 w-3.5 text-brand-gold" />
+                        </div>
+                        <span className="group-hover:text-brand-primary transition-colors">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Protection Features Section */}
+        <section className="py-24 bg-background" aria-labelledby="protection-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Advanced Technology</span>
+              <h2 id="protection-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                Complete PPF <span className="text-gradient-gold">Protection</span> Features
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Advanced technology protecting your vehicle in every way
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-children">
+              {[
+                { icon: Shield, title: "Stone Chip Protection", desc: "Shields against stone chips, minor scratches, and road debris." },
+                { icon: Sun, title: "UV & Oxidation Resistance", desc: "Blocks harmful UV rays, preventing paint fading and oxidation over time." },
+                { icon: Sparkles, title: "Self-Healing Properties", desc: "Minor scratches and swirl marks disappear with heat, keeping your paint pristine." },
+                { icon: Droplets, title: "Easy Cleaning & Maintenance", desc: "Hydrophobic surface repels water and dirt, making washing effortless." },
+                { icon: FlaskConical, title: "Chemical & Stain Resistance", desc: "Protects against bird droppings, tree sap, acid rain, and harsh chemicals." },
+                { icon: Eye, title: "Invisible Protection", desc: "Crystal clear finish maintains your vehicle's original appearance." },
+              ].map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <Card key={index} className="card-premium group">
+                    <CardContent className="p-8">
+                      <div className="w-16 h-16 bg-gradient-to-br from-brand-royal-blue/10 to-brand-gold/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="h-8 w-8 text-brand-royal-blue group-hover:text-brand-gold transition-colors duration-300" />
+                      </div>
+                      <h3 className="text-xl font-bold text-brand-primary mb-3 font-outfit">{feature.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <TestimonialsCarousel />
+
+        {/* Warranty Lookup Section */}
+        <section id="warranty-lookup" className="py-24 bg-gradient-to-br from-brand-muted/30 via-white to-brand-gold/5" aria-labelledby="warranty-lookup-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Digital Verification</span>
+              <h2 id="warranty-lookup-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                Check Your <span className="text-gradient-gold">PPF Warranty</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Enter your warranty number to instantly access your digital warranty certificate
+              </p>
+            </div>
+            
+            <WarrantyLookup />
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-24 bg-background" aria-labelledby="how-it-works-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Simple Process</span>
+              <h2 id="how-it-works-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                How Our PPF <span className="text-gradient-gold">Warranty</span> Works
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Simple, digital, and secure warranty verification process
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {[
+                { step: "1", title: "PPF Installation", description: "Get D2W Defenza PPF installed by authorized dealers" },
+                { step: "2", title: "Warranty Registration", description: "Your warranty is automatically registered in our system" },
+                { step: "3", title: "Digital Certificate", description: "Receive your unique warranty number and digital certificate" },
+                { step: "4", title: "Easy Verification", description: "Check warranty status anytime through our website" }
+              ].map((item, index) => (
+                <div key={index} className="text-center group">
+                  <div className="relative mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto text-white text-3xl font-bold shadow-xl group-hover:scale-110 transition-transform duration-300 font-outfit">
+                      {item.step}
+                    </div>
+                    {index < 3 && (
+                      <div className="hidden md:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-brand-gold to-brand-royal-blue/30 -translate-y-1/2"></div>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold text-brand-primary mb-3 font-outfit">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Us Section */}
+        <section id="contact" className="py-24 bg-gradient-to-br from-brand-muted/30 via-white to-brand-gold/5" aria-labelledby="contact-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Get In Touch</span>
+              <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
+                Contact <span className="text-gradient-gold">Us</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Get in touch with us for inquiries, quotes, or to become a dealer
+              </p>
+            </div>
+            
+            <ContactForm />
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-brand-primary via-brand-royal-blue to-brand-primary text-white py-12 border-t-4 border-brand-gold" role="contentinfo">
+      <footer className="bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-primary text-white py-16 border-t-4 border-brand-gold" role="contentinfo">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-brand-gold rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(255,193,7,0.4)]">
-                  <Shield className="h-5 w-5 text-brand-primary" />
+          <div className="grid md:grid-cols-4 gap-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-brand-gold rounded-xl flex items-center justify-center shadow-lg">
+                  <Shield className="h-7 w-7 text-brand-primary" />
                 </div>
-                <span className="text-xl font-bold">
+                <span className="text-2xl font-bold font-outfit">
                   <span className="text-brand-gold">D2W</span> Defenza PPF
                 </span>
               </div>
-              <p className="text-blue-200">
-                Premium paint protection film with comprehensive digital warranty coverage.
+              <p className="text-blue-200 leading-relaxed max-w-md">
+                Premium paint protection film with comprehensive digital warranty coverage. Trusted by thousands of car owners across India.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <div className="space-y-2 text-gray-300">
-                <p>support@d2wdefenza.com</p>
-                <p>1800-XXX-XXXX</p>
+              <h4 className="font-bold mb-6 text-lg font-outfit">Contact</h4>
+              <div className="space-y-3 text-blue-200">
+                <p className="hover:text-brand-gold transition-colors cursor-pointer">support@d2wdefenza.com</p>
+                <p className="hover:text-brand-gold transition-colors cursor-pointer">1800-XXX-XXXX</p>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <div className="space-y-2">
-                <Link to="/warranty-claims" className="block text-gray-300 hover:text-brand-gold transition-colors">
+              <h4 className="font-bold mb-6 text-lg font-outfit">Support</h4>
+              <div className="space-y-3">
+                <Link to="/warranty-claims" className="block text-blue-200 hover:text-brand-gold transition-colors">
                   Warranty Claims
                 </Link>
-                <Link to="/terms-conditions" className="block text-gray-300 hover:text-brand-gold transition-colors">
+                <Link to="/terms-conditions" className="block text-blue-200 hover:text-brand-gold transition-colors">
                   Terms & Conditions
                 </Link>
-                <Link to="/blog" className="block text-gray-300 hover:text-brand-gold transition-colors">
+                <Link to="/blog" className="block text-blue-200 hover:text-brand-gold transition-colors">
                   Blog
                 </Link>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-brand-secondary mt-8 pt-8 text-center text-gray-300">
+          <div className="border-t border-white/10 mt-12 pt-8 text-center text-blue-200">
             <p>&copy; 2024 D2W Defenza PPF. All rights reserved.</p>
           </div>
         </div>
