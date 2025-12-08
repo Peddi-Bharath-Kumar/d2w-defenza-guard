@@ -1,4 +1,4 @@
-import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye, ArrowRight } from "lucide-react";
+import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye, ArrowRight, X, Check, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -161,37 +161,81 @@ const Index = () => {
             <div className="text-center mb-16">
               <span className="inline-block text-brand-royal-blue font-semibold text-sm uppercase tracking-wider mb-4">Product Range</span>
               <h2 id="variants-heading" className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 font-outfit">
-                <span className="text-gradient-gold">D2W</span> Defenza PPF Variants
+                <span className="text-gradient-gold">D2W</span> PPF Collection
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Choose the perfect paint protection for your vehicle
               </p>
             </div>
             
-            <div className="max-w-2xl mx-auto">
-              <Card className="card-premium overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-gold/20 to-transparent rounded-bl-full"></div>
-                <CardContent className="p-10 relative">
-                  <div className="text-center mb-8">
-                    <div className="w-24 h-24 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl animate-float">
-                      <Shield className="h-12 w-12 text-white" />
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-children">
+              {/* D2W Defenza - Flagship */}
+              <Card className="card-premium overflow-hidden relative border-2 border-brand-gold/40 bg-gradient-to-br from-white via-brand-gold/5 to-brand-gold/10">
+                <div className="absolute top-4 right-4 bg-brand-gold text-brand-primary text-xs font-bold px-3 py-1 rounded-full">FLAGSHIP</div>
+                <CardContent className="p-8 relative">
+                  <div className="text-center mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue to-brand-gold rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                      <Shield className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="text-3xl font-bold text-brand-primary mb-3 font-outfit">Transparent TPU PPF</h3>
-                    <p className="text-brand-gold font-bold text-xl">190 / 215 Microns</p>
+                    <h3 className="text-2xl font-bold text-brand-primary mb-2 font-outfit">D2W Defenza</h3>
+                    <div className="inline-flex items-center gap-2 bg-brand-gold/20 px-4 py-2 rounded-full">
+                      <Award className="h-4 w-4 text-brand-gold" />
+                      <span className="text-brand-gold font-bold">10 Years Warranty</span>
+                    </div>
                   </div>
-                  <ul className="space-y-4 text-muted-foreground">
-                    {[
-                      "Premium TPU material",
-                      "Available in 190 and 215 micron thickness",
-                      "10-year warranty coverage",
-                      "Crystal clear finish",
-                      "Self-healing technology",
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-start gap-3 group">
-                        <div className="w-6 h-6 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/40 transition-colors">
-                          <Zap className="h-3.5 w-3.5 text-brand-gold" />
-                        </div>
-                        <span className="group-hover:text-brand-primary transition-colors">{item}</span>
+                  <ul className="space-y-3 text-muted-foreground text-sm">
+                    {["Premium TPU 190/215 micron", "Crystal clear glossy finish", "Self-healing technology", "Maximum protection"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <Zap className="h-4 w-4 text-brand-gold flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* D2W Radiant - Glossy */}
+              <Card className="card-premium overflow-hidden relative">
+                <CardContent className="p-8 relative">
+                  <div className="text-center mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-brand-royal-blue/80 to-brand-royal-blue rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Sparkles className="h-10 w-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-brand-primary mb-2 font-outfit">D2W Radiant</h3>
+                    <div className="inline-flex items-center gap-2 bg-brand-royal-blue/10 px-4 py-2 rounded-full">
+                      <Award className="h-4 w-4 text-brand-royal-blue" />
+                      <span className="text-brand-royal-blue font-bold">5 Years Warranty</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-3 text-muted-foreground text-sm">
+                    {["High-gloss finish", "Brilliant shine enhancement", "Self-healing properties", "Excellent protection"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <Zap className="h-4 w-4 text-brand-royal-blue flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* D2W Matte */}
+              <Card className="card-premium overflow-hidden relative">
+                <CardContent className="p-8 relative">
+                  <div className="text-center mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                      <Eye className="h-10 w-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-brand-primary mb-2 font-outfit">D2W Matte</h3>
+                    <div className="inline-flex items-center gap-2 bg-slate-100 px-4 py-2 rounded-full">
+                      <Award className="h-4 w-4 text-slate-700" />
+                      <span className="text-slate-700 font-bold">5 Years Warranty</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-3 text-muted-foreground text-sm">
+                    {["Elegant matte finish", "Satin-smooth texture", "Self-healing properties", "Luxury appearance"].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <Zap className="h-4 w-4 text-slate-600 flex-shrink-0" />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -236,6 +280,90 @@ const Index = () => {
                   </Card>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Why PPF is Essential Section */}
+        <section className="py-24 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-royal-blue overflow-hidden" aria-labelledby="why-ppf-heading">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="inline-block text-brand-gold font-semibold text-sm uppercase tracking-wider mb-4">Protection Matters</span>
+              <h2 id="why-ppf-heading" className="text-4xl md:text-5xl font-bold text-white mb-6 font-outfit">
+                Why <span className="text-gradient-gold">PPF</span> is Essential
+              </h2>
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+                Protect your ₹5-50 Lakh+ vehicle investment with premium paint protection
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Without PPF */}
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-bl-full"></div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">
+                    <AlertTriangle className="h-6 w-6 text-red-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white font-outfit">Without PPF</h3>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    "Stone chips & scratches damage paint",
+                    "UV rays cause paint fading",
+                    "Bird droppings etch into clear coat",
+                    "Acid rain & chemicals stain paint",
+                    "Expensive repainting costs",
+                    "Decreased resale value"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-red-200">
+                      <div className="w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <X className="h-4 w-4 text-red-400" />
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* With D2W PPF */}
+              <div className="bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 backdrop-blur-sm border border-brand-gold/30 rounded-2xl p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/20 rounded-bl-full"></div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-brand-gold/30 rounded-xl flex items-center justify-center">
+                    <Shield className="h-6 w-6 text-brand-gold" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white font-outfit">With D2W PPF</h3>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    "Invisible shield against stone chips",
+                    "UV protection prevents fading",
+                    "Self-healing removes minor scratches",
+                    "Chemical & stain resistant surface",
+                    "Up to 10-year warranty protection",
+                    "Maintains vehicle resale value"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-green-200">
+                      <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="h-4 w-4 text-green-400" />
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Button 
+                size="lg"
+                className="bg-brand-gold hover:bg-brand-gold/90 text-brand-primary px-8 py-6 text-lg font-bold shadow-[0_0_30px_rgba(255,193,7,0.4)] hover:shadow-[0_0_50px_rgba(255,193,7,0.6)] transition-all"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Protect Your Car Today
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
         </section>
