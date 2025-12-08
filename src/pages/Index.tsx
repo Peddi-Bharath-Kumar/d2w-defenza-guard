@@ -10,6 +10,7 @@ import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import TrustBadges from "@/components/TrustBadges";
 import StickyNavigation from "@/components/StickyNavigation";
 import ParticleBackground from "@/components/ParticleBackground";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
@@ -367,6 +368,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Before/After Slider */}
+        <BeforeAfterSlider />
 
         {/* Testimonials */}
         <TestimonialsCarousel />
