@@ -14,7 +14,7 @@ const badges = [
   {
     icon: Award,
     title: "Premium Quality",
-    description: "ISO certified manufacturing",
+    description: "Superior craftsmanship",
   },
   {
     icon: CheckCircle,
