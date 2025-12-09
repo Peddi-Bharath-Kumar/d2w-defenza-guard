@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 import { Slider } from "@/components/ui/slider";
+import benzBefore from "@/assets/benz-before.jpg";
+import benzAfter from "@/assets/benz-after.jpg";
 
 const BeforeAfterSlider = () => {
   const [sliderValue, setSliderValue] = useState([50]);
@@ -28,24 +30,28 @@ const BeforeAfterSlider = () => {
           >
             {/* Before Image (Full width, underneath) */}
             <div className="absolute inset-0">
-              <div className="w-full h-full bg-gradient-to-br from-red-900/40 via-orange-800/30 to-yellow-700/20 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <div className="grid grid-cols-3 gap-4 mb-6">
-                      {/* Simulated damage marks */}
-                      <div className="w-16 h-16 rounded-full bg-red-500/30 border-2 border-red-400/50 flex items-center justify-center">
-                        <span className="text-red-400 text-xs font-bold">CHIP</span>
-                      </div>
-                      <div className="w-20 h-8 bg-orange-500/30 border-2 border-orange-400/50 rounded flex items-center justify-center">
-                        <span className="text-orange-400 text-xs font-bold">SCRATCH</span>
-                      </div>
-                      <div className="w-16 h-16 rounded-full bg-yellow-500/30 border-2 border-yellow-400/50 flex items-center justify-center">
-                        <span className="text-yellow-400 text-xs font-bold">FADE</span>
-                      </div>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-red-400 mb-2">Without PPF</h3>
-                    <p className="text-muted-foreground">Vulnerable to damage</p>
-                  </div>
+              <img 
+                src={benzBefore} 
+                alt="Black Mercedes-Benz without PPF protection showing vulnerable paint" 
+                className="w-full h-full object-cover"
+              />
+              {/* Red overlay for damage emphasis */}
+              <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 via-red-800/20 to-transparent" />
+              
+              {/* Damage indicators */}
+              <div className="absolute top-1/4 left-1/4 animate-pulse">
+                <div className="w-12 h-12 rounded-full bg-red-500/60 border-2 border-red-400 flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-white text-[10px] font-bold">CHIP</span>
+                </div>
+              </div>
+              <div className="absolute top-1/2 left-1/3 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                <div className="w-16 h-6 bg-orange-500/60 border-2 border-orange-400 rounded flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-white text-[10px] font-bold">SCRATCH</span>
+                </div>
+              </div>
+              <div className="absolute bottom-1/3 left-1/4 animate-pulse" style={{ animationDelay: '1s' }}>
+                <div className="w-12 h-12 rounded-full bg-yellow-500/60 border-2 border-yellow-400 flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-white text-[10px] font-bold">FADE</span>
                 </div>
               </div>
             </div>
@@ -55,24 +61,28 @@ const BeforeAfterSlider = () => {
               className="absolute inset-0 overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - sliderValue[0]}% 0 0)` }}
             >
-              <div className="w-full h-full bg-gradient-to-br from-brand-gold/20 via-emerald-800/20 to-teal-700/20 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    <div className="grid grid-cols-3 gap-4 mb-6">
-                      {/* Protection shields */}
-                      <div className="w-16 h-16 rounded-full bg-brand-gold/30 border-2 border-brand-gold/50 flex items-center justify-center">
-                        <span className="text-brand-gold text-xs font-bold">HEAL</span>
-                      </div>
-                      <div className="w-20 h-8 bg-emerald-500/30 border-2 border-emerald-400/50 rounded flex items-center justify-center">
-                        <span className="text-emerald-400 text-xs font-bold">PROTECT</span>
-                      </div>
-                      <div className="w-16 h-16 rounded-full bg-teal-500/30 border-2 border-teal-400/50 flex items-center justify-center">
-                        <span className="text-teal-400 text-xs font-bold">SHINE</span>
-                      </div>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-brand-gold mb-2">With D2W PPF</h3>
-                    <p className="text-muted-foreground">Ultimate protection</p>
-                  </div>
+              <img 
+                src={benzAfter} 
+                alt="Black Mercedes-Benz with D2W PPF protection showing pristine glossy finish" 
+                className="w-full h-full object-cover"
+              />
+              {/* Golden/emerald overlay for protection emphasis */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/15 via-emerald-800/10 to-transparent" />
+              
+              {/* Protection indicators */}
+              <div className="absolute top-1/4 right-1/4">
+                <div className="w-12 h-12 rounded-full bg-brand-gold/60 border-2 border-brand-gold flex items-center justify-center backdrop-blur-sm animate-pulse">
+                  <span className="text-background text-[10px] font-bold">HEAL</span>
+                </div>
+              </div>
+              <div className="absolute top-1/2 right-1/3" style={{ animationDelay: '0.5s' }}>
+                <div className="w-16 h-6 bg-emerald-500/60 border-2 border-emerald-400 rounded flex items-center justify-center backdrop-blur-sm animate-pulse">
+                  <span className="text-white text-[10px] font-bold">PROTECT</span>
+                </div>
+              </div>
+              <div className="absolute bottom-1/3 right-1/4" style={{ animationDelay: '1s' }}>
+                <div className="w-12 h-12 rounded-full bg-teal-500/60 border-2 border-teal-400 flex items-center justify-center backdrop-blur-sm animate-pulse">
+                  <span className="text-white text-[10px] font-bold">SHINE</span>
                 </div>
               </div>
             </div>
