@@ -265,7 +265,7 @@ const Index = () => {
                 { icon: Sun, title: "UV & Oxidation Resistance", desc: "Blocks harmful UV rays, preventing paint fading and oxidation over time." },
                 { icon: Sparkles, title: "Self-Healing Properties", desc: "Minor scratches and swirl marks disappear with heat, keeping your paint pristine." },
                 { icon: Droplets, title: "Easy Cleaning & Maintenance", desc: "Hydrophobic surface repels water and dirt, making washing effortless." },
-                { icon: FlaskConical, title: "Chemical & Stain Resistance", desc: "Protects against bird droppings, tree sap, acid rain, and harsh chemicals." },
+                { icon: FlaskConical, title: "Easy Stain Removal", desc: "Smooth surface makes cleaning easier - contaminants wash off without damaging your original paint." },
                 { icon: Eye, title: "Invisible Protection", desc: "Crystal clear finish maintains your vehicle's original appearance." },
               ].map((feature, index) => {
                 const Icon = feature.icon;
