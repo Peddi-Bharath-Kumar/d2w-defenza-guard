@@ -34,7 +34,6 @@ interface StoredWarranty {
 
 const WarrantyLookup = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchType, setSearchType] = useState<"warranty" | "roll">("warranty");
   const [warrantyInfo, setWarrantyInfo] = useState<WarrantyInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
