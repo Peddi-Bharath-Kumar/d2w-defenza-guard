@@ -187,76 +187,72 @@ const WarrantyLookup = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className={`px-4 py-2 rounded-full text-sm font-semibold border ${getStatusColor(warrantyInfo.status)}`}>
-                  {warrantyInfo.status}
-                </div>
+                {warrantyInfo.status === "Active" ? (
+                  <div className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold bg-green-500/20 text-green-300 border border-green-400/30">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Active
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold bg-red-500/20 text-red-300 border border-red-400/30">
+                    Expired
+                  </div>
+                )}
               </div>
             </div>
           </CardHeader>
-          <CardContent className="p-8">
+          <CardContent className="p-8 space-y-6">
             {/* Authenticity Badge */}
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
-              <CheckCircle2 className="w-6 h-6 text-green-600" />
+            <div className="p-5 bg-green-50 border-2 border-green-300 rounded-xl flex items-center gap-4 shadow-[0_0_20px_rgba(34,197,94,0.15)]">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                <CheckCircle2 className="w-7 h-7 text-green-600" />
+              </div>
               <div>
-                <p className="font-semibold text-green-800">✓ Genuine D2W Defenza Product</p>
+                <p className="font-bold text-green-800 text-lg">✓ Genuine D2W Defenza Product</p>
                 <p className="text-sm text-green-700">This PPF roll has been verified as authentic</p>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="flex items-start gap-3">
-                  <User className="h-5 w-5 text-brand-royal-blue mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-brand-primary">Customer Information</h3>
-                    <p className="text-lg">{warrantyInfo.customerName}</p>
-                    <p className="text-muted-foreground">{warrantyInfo.vehicleInfo}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-brand-royal-blue mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-brand-primary">Installation Details</h3>
-                    <p className="text-lg">{warrantyInfo.installerName}</p>
-                  </div>
-                </div>
+            {/* Warranty Number - Prominent */}
+            <div className="text-center p-5 rounded-xl bg-gradient-to-r from-brand-royal-blue/5 via-brand-gold/5 to-brand-royal-blue/5 border border-brand-royal-blue/20">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Warranty Number</p>
+              <p className="text-2xl font-bold font-mono text-brand-royal-blue tracking-wide">{warrantyInfo.warrantyNumber}</p>
+            </div>
 
-                <div className="flex items-start gap-3">
-                  <Package className="h-5 w-5 text-brand-royal-blue mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-brand-primary">PPF Roll ID</h3>
-                    <Badge variant="outline" className="font-mono text-sm">
-                      {warrantyInfo.rollId}
-                    </Badge>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Customer Info Card */}
+              <div className="p-5 rounded-xl border border-border bg-muted/30 space-y-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <User className="h-5 w-5 text-brand-royal-blue" />
+                  <h3 className="font-bold text-brand-primary text-sm uppercase tracking-wide">Customer</h3>
                 </div>
+                <p className="text-lg font-semibold">{warrantyInfo.customerName}</p>
+                <p className="text-muted-foreground">{warrantyInfo.vehicleInfo}</p>
               </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-3">
-                  <Calendar className="h-5 w-5 text-brand-royal-blue mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-brand-primary">Coverage Period</h3>
-                    <p className="text-lg">{warrantyInfo.coverageType}</p>
-                    <div className="text-muted-foreground">
-                      <p>Installed: {new Date(warrantyInfo.installationDate).toLocaleDateString()}</p>
-                      <p>Expires: {new Date(warrantyInfo.expiryDate).toLocaleDateString()}</p>
-                    </div>
-                  </div>
+
+              {/* Installer Card */}
+              <div className="p-5 rounded-xl border border-border bg-muted/30 space-y-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin className="h-5 w-5 text-brand-royal-blue" />
+                  <h3 className="font-bold text-brand-primary text-sm uppercase tracking-wide">Installer</h3>
                 </div>
-                
-                <div className="flex items-start gap-3">
-                  <Shield className="h-5 w-5 text-brand-gold mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-brand-primary">Warranty Number</h3>
-                    <p className="text-lg font-mono text-brand-royal-blue">{warrantyInfo.warrantyNumber}</p>
-                  </div>
+                <p className="text-lg font-semibold">{warrantyInfo.installerName}</p>
+              </div>
+
+              {/* Coverage Card */}
+              <div className="p-5 rounded-xl border border-border bg-muted/30 space-y-1 md:col-span-2">
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="h-5 w-5 text-brand-royal-blue" />
+                  <h3 className="font-bold text-brand-primary text-sm uppercase tracking-wide">Coverage Period</h3>
+                </div>
+                <p className="text-lg font-semibold">{warrantyInfo.coverageType}</p>
+                <div className="flex gap-6 text-muted-foreground text-sm mt-1">
+                  <p>Installed: <span className="font-medium text-foreground">{new Date(warrantyInfo.installationDate).toLocaleDateString()}</span></p>
+                  <p>Expires: <span className="font-medium text-foreground">{new Date(warrantyInfo.expiryDate).toLocaleDateString()}</span></p>
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 p-4 bg-gradient-to-r from-brand-royal-blue/10 to-brand-gold/10 rounded-lg border border-brand-royal-blue/20">
+            <div className="p-4 bg-gradient-to-r from-brand-royal-blue/10 to-brand-gold/10 rounded-lg border border-brand-royal-blue/20">
               <p className="text-sm text-brand-primary">
                 <strong className="text-brand-royal-blue">Note:</strong> This digital warranty certificate is valid for all warranty claims. 
                 Please contact your installer or <span className="text-brand-gold font-semibold">D2W</span> Defenza authorized dealer for any warranty services.
