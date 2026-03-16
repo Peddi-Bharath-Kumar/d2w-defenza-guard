@@ -107,11 +107,7 @@ const WarrantyLookup = () => {
         }
       } else {
         setWarrantyInfo(null);
-        setError(
-          searchType === "warranty"
-            ? "Warranty number not found. Please check your warranty card and try again."
-            : "Roll ID not found. This may not be a genuine D2W Defenza product."
-        );
+        setError("Warranty number not found. Please check your warranty card and try again.");
       }
       setIsLoading(false);
     }, 1000);
