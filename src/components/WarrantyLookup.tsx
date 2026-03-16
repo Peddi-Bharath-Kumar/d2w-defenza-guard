@@ -133,53 +133,21 @@ const WarrantyLookup = () => {
             <Search className="h-6 w-6 text-white" />
           </div>
           <CardTitle className="text-2xl text-brand-primary">
-            <span className="text-brand-gold">D2W</span> Defenza Warranty Lookup
+            <span className="text-brand-gold">D2W</span> Defenza E-Warranty Lookup
           </CardTitle>
           <CardDescription className="text-lg">
-            Enter your warranty number or PPF Roll ID to verify authenticity
+            Enter your warranty number to verify and view your PPF e-warranty certificate
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Search Type Toggle */}
-          <div className="flex justify-center gap-2 mb-4">
-            <Button
-              type="button"
-              variant={searchType === "warranty" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setSearchType("warranty");
-                setSearchTerm("");
-                setWarrantyInfo(null);
-                setError("");
-              }}
-            >
-              <Shield className="w-4 h-4 mr-2" />
-              Warranty Number
-            </Button>
-            <Button
-              type="button"
-              variant={searchType === "roll" ? "default" : "outline"}
-              size="sm"
-              onClick={() => {
-                setSearchType("roll");
-                setSearchTerm("");
-                setWarrantyInfo(null);
-                setError("");
-              }}
-            >
-              <Package className="w-4 h-4 mr-2" />
-              Roll ID
-            </Button>
-          </div>
-
           <div className="flex gap-4 items-end">
             <div className="flex-1">
               <label htmlFor="search-term" className="block text-sm font-medium text-brand-primary mb-2">
-                {searchType === "warranty" ? "Warranty Number" : "PPF Roll ID"}
+                Warranty Number
               </label>
               <Input
                 id="search-term"
-                placeholder={searchType === "warranty" ? "e.g., D2W-ABC123-XYZ" : "e.g., D2W-ROLL-ABC123"}
+                placeholder="e.g., D2W-ABC123-XYZ"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value.toUpperCase())}
                 className="text-lg h-12 border-brand-royal-blue/30 focus:border-brand-royal-blue focus:ring-brand-royal-blue font-mono"
