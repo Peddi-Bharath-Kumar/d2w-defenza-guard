@@ -60,7 +60,7 @@ const WarrantyLookup = () => {
 
   const handleLookup = async () => {
     if (!searchTerm.trim()) {
-      setError("Please enter a warranty number or Roll ID");
+      setError("Please enter a warranty number");
       return;
     }
 
@@ -73,9 +73,7 @@ const WarrantyLookup = () => {
       
       // Search in localStorage warranties
       const found = warranties.find(w => 
-        searchType === "warranty" 
-          ? w.warrantyNumber.toUpperCase() === searchValue
-          : w.rollId.toUpperCase() === searchValue
+        w.warrantyNumber.toUpperCase() === searchValue
       );
 
       if (found) {
