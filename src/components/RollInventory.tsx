@@ -34,12 +34,6 @@ const RollInventory = ({ rolls, onRollsChange }: RollInventoryProps) => {
     quantity: "1",
   });
 
-  const generateRollId = (index: number = 0) => {
-    const prefix = "D2W-ROLL";
-    const timestamp = Date.now().toString(36).toUpperCase();
-    const random = Math.random().toString(36).substring(2, 4).toUpperCase();
-    return `${prefix}-${timestamp}${random}${index > 0 ? `-${index}` : ""}`;
-  };
 
   const handleAddRolls = () => {
     const quantity = parseInt(newRollData.quantity) || 1;
