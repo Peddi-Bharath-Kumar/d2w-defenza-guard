@@ -186,12 +186,13 @@ const RollInventory = ({ rolls, onRollsChange }: RollInventoryProps) => {
           <CardContent className="border-t">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4">
               <div className="space-y-2">
-                <Label htmlFor="rollId">Roll ID (optional)</Label>
+                <Label htmlFor="rollId">Roll ID *</Label>
                 <Input
                   id="rollId"
                   value={newRollData.rollId}
                   onChange={(e) => setNewRollData(prev => ({ ...prev, rollId: e.target.value }))}
-                  placeholder="Auto-generated if empty"
+                  placeholder="Enter Roll ID"
+                  required
                 />
               </div>
               <div className="space-y-2">
