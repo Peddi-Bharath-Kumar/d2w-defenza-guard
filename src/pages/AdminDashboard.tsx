@@ -8,9 +8,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Shield, LogOut, Plus, FileText, Users, Package, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Shield, LogOut, Plus, FileText, Users, Package } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import RollInventory, { PPFRoll } from "@/components/RollInventory";
+import RollSelector from "@/components/RollSelector";
 
 interface WarrantyRecord {
   id: string;
