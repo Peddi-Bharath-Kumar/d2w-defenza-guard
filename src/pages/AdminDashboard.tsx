@@ -310,58 +310,13 @@ const AdminDashboard = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* PPF Roll ID - CRITICAL FIELD */}
-                  <div className="p-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5">
-                    <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-                      <Package className="w-4 h-4 text-primary" />
-                      PPF Roll Identification (Anti-Fraud)
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="rollId">PPF Roll ID *</Label>
-                        <Input
-                          id="rollId"
-                          value={formData.rollId}
-                          onChange={(e) => handleInputChange("rollId", e.target.value.toUpperCase())}
-                          placeholder="e.g., D2W-ROLL-ABC123"
-                          required
-                          className={rollValidation ? (rollValidation.valid ? "border-green-500" : "border-destructive") : ""}
-                        />
-                        {rollValidation && (
-                          <div className={`flex items-center gap-2 text-sm ${rollValidation.valid ? "text-green-600" : "text-destructive"}`}>
-                            {rollValidation.valid ? (
-                              <CheckCircle2 className="w-4 h-4" />
-                            ) : (
-                              <AlertCircle className="w-4 h-4" />
-                            )}
-                            {rollValidation.message}
-                          </div>
-                        )}
-                      </div>
-                      <div className="space-y-2">
-                        <Label>Quick Select Available Roll</Label>
-                        <Select
-                          value={formData.rollId}
-                          onValueChange={(value) => handleInputChange("rollId", value)}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder={`${availableRolls.length} rolls available`} />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {availableRolls.length === 0 ? (
-                              <SelectItem value="none" disabled>No rolls available</SelectItem>
-                            ) : (
-                              availableRolls.map(roll => (
-                                <SelectItem key={roll.id} value={roll.rollId}>
-                                  {roll.rollId} ({roll.batchNumber})
-                                </SelectItem>
-                              ))
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </div>
+                  {/* PPF Roll Selection */}
+                  <RollSelector
+                    rolls={rolls}
+                    value={formData.rollId}
+                    onChange={(rollId) => handleInputChange("rollId", rollId)}
+                    validation={rollValidation}
+                  />
 
                   {/* Customer Information */}
                   <div>
