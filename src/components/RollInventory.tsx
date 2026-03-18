@@ -34,27 +34,27 @@ const RollInventory = ({ rolls, onRollsChange }: RollInventoryProps) => {
     quantity: "1",
   });
 
-  const generateRollId = (index: number = 0) => {
-    const prefix = "D2W-ROLL";
-    const timestamp = Date.now().toString(36).toUpperCase();
-    const random = Math.random().toString(36).substring(2, 4).toUpperCase();
-    return `${prefix}-${timestamp}${random}${index > 0 ? `-${index}` : ""}`;
-  };
 
   const handleAddRolls = () => {
+    if (!newRollData.rollId.trim()) {
+      toast({
+        title: "Roll ID is required",
+        description: "Please enter a Roll ID before adding to inventory.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const quantity = parseInt(newRollData.quantity) || 1;
     const newRolls: PPFRoll[] = [];
 
     for (let i = 0; i < quantity; i++) {
-      const rollId = newRollData.rollId 
-        ? (quantity > 1 ? `${newRollData.rollId}-${i + 1}` : newRollData.rollId)
-        : generateRollId(i);
+      const rollId = quantity > 1 ? `${newRollData.rollId.trim()}-${i + 1}` : newRollData.rollId.trim();
 
-      // Check if roll ID already exists
       if (rolls.some(r => r.rollId === rollId)) {
         toast({
           title: "Duplicate Roll ID",
-          description: `Roll ID ${rollId} already exists.`,
+          description: `Duplicate Roll ID already exists. Please enter a unique ID.`,
           variant: "destructive",
         });
         return;
@@ -186,12 +186,13 @@ const RollInventory = ({ rolls, onRollsChange }: RollInventoryProps) => {
           <CardContent className="border-t">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4">
               <div className="space-y-2">
-                <Label htmlFor="rollId">Roll ID (optional)</Label>
+                <Label htmlFor="rollId">Roll ID *</Label>
                 <Input
                   id="rollId"
                   value={newRollData.rollId}
                   onChange={(e) => setNewRollData(prev => ({ ...prev, rollId: e.target.value }))}
-                  placeholder="Auto-generated if empty"
+                  placeholder="Enter Roll ID"
+                  required
                 />
               </div>
               <div className="space-y-2">
