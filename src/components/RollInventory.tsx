@@ -36,19 +36,25 @@ const RollInventory = ({ rolls, onRollsChange }: RollInventoryProps) => {
 
 
   const handleAddRolls = () => {
+    if (!newRollData.rollId.trim()) {
+      toast({
+        title: "Roll ID is required",
+        description: "Please enter a Roll ID before adding to inventory.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const quantity = parseInt(newRollData.quantity) || 1;
     const newRolls: PPFRoll[] = [];
 
     for (let i = 0; i < quantity; i++) {
-      const rollId = newRollData.rollId 
-        ? (quantity > 1 ? `${newRollData.rollId}-${i + 1}` : newRollData.rollId)
-        : generateRollId(i);
+      const rollId = quantity > 1 ? `${newRollData.rollId.trim()}-${i + 1}` : newRollData.rollId.trim();
 
-      // Check if roll ID already exists
       if (rolls.some(r => r.rollId === rollId)) {
         toast({
           title: "Duplicate Roll ID",
-          description: `Roll ID ${rollId} already exists.`,
+          description: `Duplicate Roll ID already exists. Please enter a unique ID.`,
           variant: "destructive",
         });
         return;
