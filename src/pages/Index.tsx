@@ -404,7 +404,7 @@ const Index = () => {
               </p>
             </div>
             
-            <WarrantyLookup />
+            <WarrantyLookup onSearch={checkWarranty} />
           </div>
         </section>
 
