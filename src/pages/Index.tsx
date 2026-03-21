@@ -15,6 +15,21 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
+  const checkWarranty = async (rollId) => {
+    try {
+      const response = await API.checkRoll(rollId);
+      const data = await response.text();
+      if (data === "Not found") {
+        alert("Warranty NOT FOUND ❌");
+      } else {
+        alert("Warranty Found ✅ Roll ID: " + data);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to server");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Sticky Navigation */}
