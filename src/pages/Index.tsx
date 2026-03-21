@@ -1,5 +1,5 @@
 import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye, ArrowRight, X, Check, AlertTriangle } from "lucide-react";
-import { API } from "../api";
+import { API } from "@/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
