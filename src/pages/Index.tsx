@@ -1,4 +1,5 @@
 import { Shield, Award, Users, Zap, Sun, Sparkles, Droplets, FlaskConical, Eye, ArrowRight, X, Check, AlertTriangle } from "lucide-react";
+import { API } from "../api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -14,6 +15,21 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import boxImage from "@/assets/d2w-defenza-box.jpg";
 
 const Index = () => {
+  const checkWarranty = async (rollId) => {
+    try {
+      const response = await API.checkRoll(rollId);
+      const data = await response.text();
+      if (data === "Not found") {
+        alert("Warranty NOT FOUND ❌");
+      } else {
+        alert("Warranty Found ✅ Roll ID: " + data);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to server");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Sticky Navigation */}
@@ -388,7 +404,7 @@ const Index = () => {
               </p>
             </div>
             
-            <WarrantyLookup />
+            <WarrantyLookup onSearch={checkWarranty} />
           </div>
         </section>
 

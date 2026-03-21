@@ -32,7 +32,7 @@ interface StoredWarranty {
   productType: string;
 }
 
-const WarrantyLookup = () => {
+const WarrantyLookup = ({ onSearch }: { onSearch?: (rollId: string) => void }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [warrantyInfo, setWarrantyInfo] = useState<WarrantyInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
