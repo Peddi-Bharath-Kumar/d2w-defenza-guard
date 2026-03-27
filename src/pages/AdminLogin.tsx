@@ -3,107 +3,136 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lock, Shield } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Lock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { loginAdmin } from "@/api/adminApi";
+
+import logo from "@/assets/deals2wheels-logo100.png";
+import bgImage from "@/assets/store-look.png";
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Simple demo credentials - in production, use proper authentication
-  const DEMO_USERNAME = "admin";
-  const DEMO_PASSWORD = "admin123";
-
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await loginAdmin(email, password);
 
-    if (username === DEMO_USERNAME && password === DEMO_PASSWORD) {
-      localStorage.setItem("adminLoggedIn", "true");
+      localStorage.setItem("loggedInAdmin", JSON.stringify(res.data));
+
       toast({
         title: "Login Successful",
         description: "Welcome to the Admin Portal",
       });
+
       navigate("/admin/dashboard");
-    } else {
+    } catch (error: any) {
       toast({
         title: "Login Failed",
-        description: "Invalid username or password",
+        description: error?.response?.data || "Invalid email or password",
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo/Brand */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <Shield className="w-8 h-8 text-primary" />
-          </div>
-          <h1 className="text-2xl font-bold text-foreground">D2W Defenza</h1>
-          <p className="text-muted-foreground">Admin Portal</p>
-        </div>
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Dark blur overlay */}
+      <div className="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
 
-        <Card className="border-border/50 shadow-xl">
+      {/* Main content */}
+      <div className="relative z-10 w-full max-w-md flex flex-col items-center">
+        {/* Bigger brighter logo */}
+        <div className="text-center mb-4">
+  <img
+    src={logo}
+    alt="D2W Logo"
+    className="mx-auto w-24 h-24 object-contain mb-1 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]"
+  />
+
+  <h1 className="text-3xl font-bold text-white leading-tight">
+    D2W Defenza
+  </h1>
+
+  <p className="text-gray-200 text-sm mt-1">Admin Portal</p>
+</div>
+
+        {/* Login card */}
+        <Card className="w-full bg-white/12 backdrop-blur-lg border border-white/25 shadow-2xl rounded-2xl">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-xl flex items-center gap-2">
+            <CardTitle className="text-2xl flex items-center gap-2 text-white">
               <Lock className="w-5 h-5" />
               Admin Login
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-gray-200">
               Enter your credentials to access the warranty management system
             </CardDescription>
           </CardHeader>
+
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="email" className="text-white">
+                  Email
+                </Label>
                 <Input
-                  id="username"
-                  type="text"
-                  placeholder="Enter username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="bg-white/20 text-white placeholder:text-gray-200 border-white/30"
                 />
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="bg-white/20 text-white placeholder:text-gray-200 border-white/30"
                 />
               </div>
+
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
-
-            <div className="mt-6 p-4 bg-muted/50 rounded-lg">
-              <p className="text-xs text-muted-foreground text-center">
-                Demo credentials: <span className="font-mono">admin / admin123</span>
-              </p>
-            </div>
           </CardContent>
         </Card>
 
-        <p className="text-center text-sm text-muted-foreground mt-6">
-          <a href="/" className="hover:text-primary transition-colors">
+        <p className="text-center text-sm text-gray-200 mt-6">
+          <a href="/" className="hover:text-white transition-colors">
             ← Back to Website
           </a>
         </p>

@@ -79,6 +79,11 @@ const StickyNavigation = () => {
                 </button>
               )
             )}
+
+            <Link to="/admin" className="nav-link text-white hover:text-brand-gold">
+              Admin
+            </Link>
+
             <Button
               onClick={() => handleNavClick("#warranty-lookup")}
               className="ml-4 bg-brand-gold hover:bg-brand-gold/90 text-brand-primary font-semibold btn-shine"
@@ -124,6 +129,15 @@ const StickyNavigation = () => {
                 </button>
               )
             )}
+
+            <Link
+              to="/admin"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="px-4 py-3 text-white hover:text-brand-gold hover:bg-white/10 rounded-lg transition-colors"
+            >
+              Admin
+            </Link>
+
             <Button
               onClick={() => handleNavClick("#warranty-lookup")}
               className="mt-2 bg-brand-gold hover:bg-brand-gold/90 text-brand-primary font-semibold"

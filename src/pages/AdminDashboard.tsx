@@ -12,11 +12,13 @@ import { Shield, LogOut, Plus, FileText, Users, Package } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import RollInventory, { PPFRoll } from "@/components/RollInventory";
 import RollSelector from "@/components/RollSelector";
+import { getAllRoles } from "@/api/roleApi";
+import { getAllWarranties, createWarranty } from "@/api/warrantyApi";
 
 interface WarrantyRecord {
   id: string;
   warrantyNumber: string;
-  rollId: string; // NEW: Link to PPF roll
+  rollId: string;
   customerName: string;
   email: string;
   phone: string;
@@ -35,10 +37,16 @@ interface WarrantyRecord {
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const loggedInAdminData = localStorage.getItem("loggedInAdmin");
+  const loggedInAdmin = loggedInAdminData ? JSON.parse(loggedInAdminData) : null;
+  const userRole = loggedInAdmin?.desgination?.toUpperCase();
+  const isOwner = userRole === "OWNER";
+
   const [warranties, setWarranties] = useState<WarrantyRecord[]>([]);
   const [rolls, setRolls] = useState<PPFRoll[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [rollValidation, setRollValidation] = useState<{valid: boolean; message: string} | null>(null);
+  const [rollValidation, setRollValidation] = useState<{ valid: boolean; message: string } | null>(null);
 
   const [formData, setFormData] = useState({
     rollId: "",
@@ -56,35 +64,80 @@ const AdminDashboard = () => {
     notes: "",
   });
 
+  const formatRoles = (data: any[]): PPFRoll[] => {
+    return data.map((r: any) => ({
+      rollId: r.roleid,
+      batch: r.batch,
+      status: r.status?.toLowerCase(),
+      quantity: r.quantity,
+    }));
+  };
+
+ const formatWarranties = (data: any[]): WarrantyRecord[] => {
+  return data.map((w: any) => ({
+    id: String(w.id),
+    warrantyNumber: w.warrantyId || `WR-${w.id}`,
+    rollId: w.roleId,
+    customerName: w.customerName,
+    email: w.customerEmail,
+    phone: "",
+    vehicleMake: w.make,
+    vehicleModel: w.model,
+    vehicleYear: String(w.year),
+    vinNumber: w.vinNumber,
+    productType: w.productType,
+    installerName: w.installerName,
+    installationDate: w.installationDate,
+    expiryDate: w.expiryDate,
+    notes: "",
+    createdAt: w.installationDate,
+  }));
+};
+
+
+  const loadRoles = async () => {
+    const roleRes = await getAllRoles();
+    setRolls(formatRoles(roleRes.data));
+  };
+
+  const loadWarranties = async () => {
+    const warrantyRes = await getAllWarranties();
+    setWarranties(formatWarranties(warrantyRes.data));
+  };
+
   useEffect(() => {
-    // Check if logged in
-    if (localStorage.getItem("adminLoggedIn") !== "true") {
-      navigate("/admin");
-      return;
-    }
+    const checkLoginAndLoadData = async () => {
+      const storedAdmin = localStorage.getItem("loggedInAdmin");
 
-    // Load existing warranties from localStorage
-    const savedWarranties = localStorage.getItem("warrantyRecords");
-    if (savedWarranties) {
-      setWarranties(JSON.parse(savedWarranties));
-    }
+      if (!storedAdmin) {
+        navigate("/admin");
+        return;
+      }
 
-    // Load existing rolls from localStorage
-    const savedRolls = localStorage.getItem("ppfRolls");
-    if (savedRolls) {
-      setRolls(JSON.parse(savedRolls));
-    }
-  }, [navigate]);
+      try {
+        await loadRoles();
+        await loadWarranties();
+      } catch (error) {
+        console.error("Dashboard load error:", error);
+        toast({
+          title: "Error",
+          description: "Failed to load dashboard data",
+          variant: "destructive",
+        });
+      }
+    };
 
-  // Validate Roll ID when it changes
+    checkLoginAndLoadData();
+  }, [navigate, toast]);
+
   useEffect(() => {
     if (!formData.rollId.trim()) {
       setRollValidation(null);
       return;
     }
 
-    const roll = rolls.find(r => r.rollId === formData.rollId.trim());
-    
+    const roll = rolls.find((r) => r.rollId === formData.rollId.trim());
+
     if (!roll) {
       setRollValidation({ valid: false, message: "Roll ID not found in inventory" });
     } else if (roll.status === "used") {
@@ -98,20 +151,11 @@ const AdminDashboard = () => {
 
   const handleRollsChange = (newRolls: PPFRoll[]) => {
     setRolls(newRolls);
-    localStorage.setItem("ppfRolls", JSON.stringify(newRolls));
-  };
-
-  const generateWarrantyNumber = () => {
-    const prefix = "D2W";
-    const timestamp = Date.now().toString(36).toUpperCase();
-    const random = Math.random().toString(36).substring(2, 6).toUpperCase();
-    return `${prefix}-${timestamp}-${random}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate roll ID
+
     if (!rollValidation?.valid) {
       toast({
         title: "Invalid Roll ID",
@@ -121,73 +165,62 @@ const AdminDashboard = () => {
       return;
     }
 
-    setIsSubmitting(true);
+    try {
+      setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await createWarranty({
+        roleId: formData.rollId.trim(),
+        customerName: formData.customerName,
+        customerEmail: formData.email,
+        make: formData.vehicleMake,
+        model: formData.vehicleModel,
+        year: Number(formData.vehicleYear) || new Date().getFullYear(),
+        vinNumber: formData.vinNumber,
+        productType: formData.productType,
+        installerName: formData.installerName,
+        installationDate: formData.installationDate,
+        warrantyPeriod: `${formData.warrantyYears} Years`,
+      });
 
-    const installDate = new Date(formData.installationDate);
-    const expiryDate = new Date(installDate);
-    expiryDate.setFullYear(expiryDate.getFullYear() + parseInt(formData.warrantyYears));
+      await loadWarranties();
+      await loadRoles();
 
-    const newWarranty: WarrantyRecord = {
-      id: Date.now().toString(),
-      warrantyNumber: generateWarrantyNumber(),
-      rollId: formData.rollId.trim(),
-      customerName: formData.customerName,
-      email: formData.email,
-      phone: formData.phone,
-      vehicleMake: formData.vehicleMake,
-      vehicleModel: formData.vehicleModel,
-      vehicleYear: formData.vehicleYear,
-      vinNumber: formData.vinNumber,
-      productType: formData.productType,
-      installerName: formData.installerName,
-      installationDate: formData.installationDate,
-      expiryDate: expiryDate.toISOString().split("T")[0],
-      notes: formData.notes,
-      createdAt: new Date().toISOString(),
-    };
+      toast({
+        title: "Warranty Created",
+        description: `Warranty created successfully for Roll ${formData.rollId}`,
+      });
 
-    // Update roll status to "used"
-    const updatedRolls = rolls.map(roll => 
-      roll.rollId === formData.rollId.trim()
-        ? { ...roll, status: "used" as const }
-        : roll
-    );
-    handleRollsChange(updatedRolls);
+      setFormData({
+        rollId: "",
+        customerName: "",
+        email: "",
+        phone: "",
+        vehicleMake: "",
+        vehicleModel: "",
+        vehicleYear: "",
+        vinNumber: "",
+        productType: "",
+        installerName: "",
+        installationDate: "",
+        warrantyYears: "5",
+        notes: "",
+      });
 
-    const updatedWarranties = [...warranties, newWarranty];
-    setWarranties(updatedWarranties);
-    localStorage.setItem("warrantyRecords", JSON.stringify(updatedWarranties));
-
-    toast({
-      title: "Warranty Created",
-      description: `Warranty ${newWarranty.warrantyNumber} linked to Roll ${formData.rollId}`,
-    });
-
-    // Reset form
-    setFormData({
-      rollId: "",
-      customerName: "",
-      email: "",
-      phone: "",
-      vehicleMake: "",
-      vehicleModel: "",
-      vehicleYear: "",
-      vinNumber: "",
-      productType: "",
-      installerName: "",
-      installationDate: "",
-      warrantyYears: "5",
-      notes: "",
-    });
-    setRollValidation(null);
-
-    setIsSubmitting(false);
+      setRollValidation(null);
+    } catch (error: any) {
+      console.error("Create warranty error:", error);
+      toast({
+        title: "Failed",
+        description: error?.response?.data?.message || error?.response?.data || "Unable to create warranty",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("loggedInAdmin");
     toast({
       title: "Logged Out",
       description: "You have been logged out successfully.",
@@ -199,20 +232,22 @@ const AdminDashboard = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const availableRolls = rolls.filter(r => r.status === "available");
+  const availableRolls = rolls.filter((r) => r.status === "available");
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Shield className="w-8 h-8 text-primary" />
             <div>
               <h1 className="font-bold text-foreground">D2W Defenza Admin</h1>
-              <p className="text-xs text-muted-foreground">PPF Roll Tracking & Warranty System</p>
+              <p className="text-xs text-muted-foreground">
+                {isOwner ? "OWNER - Full Access" : "ADMIN - Warranty Access Only"}
+              </p>
             </div>
           </div>
+
           <Button variant="outline" size="sm" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-2" />
             Logout
@@ -222,21 +257,22 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="warranties" className="space-y-6">
-          <TabsList className="grid w-full max-w-md grid-cols-2">
+          <TabsList className={`grid w-full ${isOwner ? "max-w-md grid-cols-2" : "max-w-xs grid-cols-1"}`}>
             <TabsTrigger value="warranties" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Warranties
             </TabsTrigger>
-            <TabsTrigger value="inventory" className="flex items-center gap-2">
-              <Package className="w-4 h-4" />
-              Roll Inventory
-            </TabsTrigger>
+
+            {isOwner && (
+              <TabsTrigger value="inventory" className="flex items-center gap-2">
+                <Package className="w-4 h-4" />
+                Roll Inventory
+              </TabsTrigger>
+            )}
           </TabsList>
 
-          {/* Warranties Tab */}
           <TabsContent value="warranties" className="space-y-6">
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className={`grid grid-cols-1 gap-4 ${isOwner ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
@@ -250,6 +286,7 @@ const AdminDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
+
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
@@ -265,19 +302,23 @@ const AdminDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-amber-500/10 rounded-lg">
-                      <Package className="w-6 h-6 text-amber-500" />
+
+              {isOwner && (
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-amber-500/10 rounded-lg">
+                        <Package className="w-6 h-6 text-amber-500" />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold">{availableRolls.length}</p>
+                        <p className="text-sm text-muted-foreground">Available Rolls</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-2xl font-bold">{availableRolls.length}</p>
-                      <p className="text-sm text-muted-foreground">Available Rolls</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              )}
+
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-4">
@@ -299,7 +340,6 @@ const AdminDashboard = () => {
               </Card>
             </div>
 
-            {/* Add Warranty Form */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -308,9 +348,9 @@ const AdminDashboard = () => {
                 </CardTitle>
                 <CardDescription>Link a PPF roll to a customer warranty</CardDescription>
               </CardHeader>
+
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* PPF Roll Selection */}
                   <RollSelector
                     rolls={rolls}
                     value={formData.rollId}
@@ -318,7 +358,6 @@ const AdminDashboard = () => {
                     validation={rollValidation}
                   />
 
-                  {/* Customer Information */}
                   <div>
                     <h3 className="text-sm font-semibold text-foreground mb-4">Customer Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -332,6 +371,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="email">Email *</Label>
                         <Input
@@ -343,6 +383,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone</Label>
                         <Input
@@ -355,7 +396,6 @@ const AdminDashboard = () => {
                     </div>
                   </div>
 
-                  {/* Vehicle Information */}
                   <div>
                     <h3 className="text-sm font-semibold text-foreground mb-4">Vehicle Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -369,6 +409,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="vehicleModel">Model *</Label>
                         <Input
@@ -379,6 +420,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="vehicleYear">Year *</Label>
                         <Input
@@ -389,6 +431,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="vinNumber">VIN Number</Label>
                         <Input
@@ -401,7 +444,6 @@ const AdminDashboard = () => {
                     </div>
                   </div>
 
-                  {/* Installation Details */}
                   <div>
                     <h3 className="text-sm font-semibold text-foreground mb-4">Installation Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -410,7 +452,6 @@ const AdminDashboard = () => {
                         <Select
                           value={formData.productType}
                           onValueChange={(value) => handleInputChange("productType", value)}
-                          required
                         >
                           <SelectTrigger>
                             <SelectValue placeholder="Select product" />
@@ -424,6 +465,7 @@ const AdminDashboard = () => {
                           </SelectContent>
                         </Select>
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="installerName">Installer Name *</Label>
                         <Input
@@ -434,6 +476,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="installationDate">Installation Date *</Label>
                         <Input
@@ -444,6 +487,7 @@ const AdminDashboard = () => {
                           required
                         />
                       </div>
+
                       <div className="space-y-2">
                         <Label htmlFor="warrantyYears">Warranty Period</Label>
                         <Select
@@ -464,7 +508,6 @@ const AdminDashboard = () => {
                     </div>
                   </div>
 
-                  {/* Notes */}
                   <div className="space-y-2">
                     <Label htmlFor="notes">Additional Notes</Label>
                     <Textarea
@@ -483,13 +526,13 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
 
-            {/* Recent Warranties */}
             {warranties.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle>Recent Warranties</CardTitle>
                   <CardDescription>Latest warranty registrations with roll tracking</CardDescription>
                 </CardHeader>
+
                 <CardContent>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
@@ -504,7 +547,7 @@ const AdminDashboard = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {warranties.slice(-10).reverse().map((warranty) => (
+                        {warranties.slice().reverse().map((warranty) => (
                           <tr key={warranty.id} className="border-b border-border/50 hover:bg-muted/50">
                             <td className="py-3 px-2 font-mono text-xs">{warranty.warrantyNumber}</td>
                             <td className="py-3 px-2">
@@ -528,10 +571,11 @@ const AdminDashboard = () => {
             )}
           </TabsContent>
 
-          {/* Inventory Tab */}
-          <TabsContent value="inventory">
-            <RollInventory rolls={rolls} onRollsChange={handleRollsChange} />
-          </TabsContent>
+          {isOwner && (
+            <TabsContent value="inventory">
+              <RollInventory rolls={rolls} onRollsChange={handleRollsChange} />
+            </TabsContent>
+          )}
         </Tabs>
       </main>
     </div>
